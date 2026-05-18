@@ -45,4 +45,4 @@ https://sync-wave-seven.vercel.app/
 ---
 
 ### License
-Mit License
+Mit License Deployment
