@@ -2,8 +2,17 @@
 
 {% block content %}
 <section class="home">
-  <h1>Current Mood</h1>
+  <h1>Your Current Mood</h1>
+
   <p id="current-mood">—</p>
-  <button id="analyze-btn" class="btn-primary">Analyze Mood</button>
+
+  <button id="analyze-btn" class="btn-primary">
+    Analyze Mood
+  </button>
+
+  <section class="recommendations">
+    <h2>Recommended for You</h2>
+    <ul id="mood-recommendations"></ul>
+  </section>
 </section>
 {% endblock %}

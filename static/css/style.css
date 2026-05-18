@@ -5,23 +5,22 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #0b0b0b;   
-  color: #e5e7eb;              
+  background-color: #0b0b0b;
+  color: #e5e7eb;
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 20px;
-  background-color: #161616;  
+  padding: 14px 24px;
+  background-color: #161616;
   border-bottom: 1px solid #1f1f1f;
 }
 
 .logo {
-  font-weight: bold;
   font-size: 18px;
-  letter-spacing: 0.5px;
+  font-weight: bold;
 }
 
 .navbar nav {
@@ -31,8 +30,8 @@ body {
 
 .navbar a,
 .navbar button {
-  margin-left: 14px;
-  color: #1DB954;              
+  margin-left: 16px;
+  color: #1DB954;
   background: none;
   border: none;
   cursor: pointer;
@@ -42,40 +41,39 @@ body {
 
 .navbar a:hover,
 .navbar button:hover {
-  color: #1ed760;              
+  color: #1ed760;
 }
 
 main {
-  padding: 40px 20px;
+  padding: 40px 30px;
   min-height: calc(100vh - 120px);
 }
 
+.home {
+  max-width: 900px;
+}
+
 .home h1 {
-  margin-top: 0;
-  font-size: 32px;
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.home h2 {
+  margin-top: 40px;
+  margin-bottom: 16px;
 }
 
 .home p {
-  color: #9ca3af;             
-  max-width: 600px;
-}
-
-.player-placeholder {
-  margin-top: 30px;
-  padding: 20px;
-  background-color: #161616;
-  border-radius: 8px;
-  border: 1px solid #1f1f1f;
-  text-align: center;
   color: #9ca3af;
+  line-height: 1.7;
 }
 
 .btn-primary {
-  padding: 10px 18px;
-  background-color: #1DB954;
-  color: #000000;
+  padding: 12px 22px;
   border: none;
-  border-radius: 20px;
+  border-radius: 24px;
+  background-color: #1DB954;
+  color: black;
   font-weight: bold;
   cursor: pointer;
 }
@@ -84,11 +82,38 @@ main {
   background-color: #1ed760;
 }
 
+.mood-grid {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+#mood-recommendations,
+#history-list,
+#recent-list {
+  list-style: none;
+  padding: 0;
+}
+
+#mood-recommendations li,
+#history-list li,
+#recent-list li {
+  background-color: #161616;
+  border: 1px solid #1f1f1f;
+  padding: 14px 18px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+iframe {
+  margin-top: 20px;
+}
+
 footer {
   text-align: center;
-  padding: 14px;
-  background-color: #111827;   
+  padding: 18px;
+  background-color: #111827;
   color: #9ca3af;
-  font-size: 13px;
   border-top: 1px solid #1f1f1f;
 }

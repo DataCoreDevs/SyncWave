@@ -3,6 +3,48 @@
     "id": 1,
     "title": "I Wanna Be Yours",
     "artist": "Arctic Monkeys",
-    "preview_url": ""
+    "moods": ["Romantic", "Sad"]
+  },
+  {
+    "id": 2,
+    "title": "Blinding Lights",
+    "artist": "The Weeknd",
+    "moods": ["Energetic"]
+  },
+  {
+    "id": 3,
+    "title": "Starboy",
+    "artist": "The Weeknd",
+    "moods": ["Energetic", "Chill"]
+  },
+  {
+    "id": 4,
+    "title": "After Dark",
+    "artist": "Mr.Kitty",
+    "moods": ["Chill", "Sad"]
+  },
+  {
+    "id": 5,
+    "title": "Softcore",
+    "artist": "The Neighbourhood",
+    "moods": ["Romantic", "Chill"]
+  },
+  {
+    "id": 6,
+    "title": "505",
+    "artist": "Arctic Monkeys",
+    "moods": ["Sad", "Romantic"]
+  },
+  {
+    "id": 7,
+    "title": "Sweater Weather",
+    "artist": "The Neighbourhood",
+    "moods": ["Chill", "Romantic"]
+  },
+  {
+    "id": 8,
+    "title": "Die For You",
+    "artist": "The Weeknd",
+    "moods": ["Romantic"]
   }
 ]
