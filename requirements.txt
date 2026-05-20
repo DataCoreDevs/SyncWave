@@ -1,1 +1,10 @@
 Flask
+pandas
+numpy
+matplotlib
+scikit-learn
+tensorflow
+keras
+joblib
+notebook
+jupyter

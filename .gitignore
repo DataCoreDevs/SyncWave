@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# SyncWave ML generated files
+ml/*.pkl
+ml/*.keras
+
+ml/visualizations/*.png
+static/graphs/*.png
