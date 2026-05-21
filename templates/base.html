@@ -2,34 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>SyncWave</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body>
 
-<header class="navbar">
-  <div class="logo">🎧 SyncWave</div>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/mood">Mood</a>
-    <a href="/recent">Recent</a>
-    <a href="/history">History</a>
-    <a href="/about">About</a>
-    <button id="change-mood-btn">Change Mood</button>
-  </nav>
-</header>
+  <!-- Video Background -->
+  <div class="video-background">
+    <video autoplay muted loop playsinline id="bg-video">
+      <source src="/static/videos/SyncWave_bg.mp4" type="video/mp4">
+    </video>
 
-<main>
-  {% block content %}{% endblock %}
-</main>
+    <div class="video-overlay"></div>
+  </div>
 
-<footer>
-  <p>© SyncWave</p>
-</footer>
+  <!-- Floating Particles -->
+  <div class="particles">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
 
-<script src="/static/js/storage.js"></script>
-<script src="/static/js/player.js"></script>
-<script src="/static/js/ui.js"></script>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="app-container">
+
+    <!-- Navbar -->
+    <header class="navbar">
+
+      <div class="logo">
+        <span class="logo-glow">🎧</span>
+        <span>SyncWave</span>
+      </div>
+
+      <nav>
+        <a href="/">HOME</a>
+        <a href="/mood">MOOD</a>
+        <a href="/recent">RECENT</a>
+        <a href="/history">HISTORY</a>
+        <a href="/about">ABOUT</a>
+      </nav>
+
+    </header>
+
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+      <p>
+        © 2026
+        <span class="footer-highlight">
+          SyncWave
+        </span>
+        — Created by Arshiya and Aryaman
+      </p>
+    </footer>
+
+  </div>
+
+  <script src="/static/js/storage.js"></script>
+  <script src="/static/js/player.js"></script>
+  <script src="/static/js/ui.js"></script>
 
 </body>
 </html>

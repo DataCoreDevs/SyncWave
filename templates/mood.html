@@ -1,18 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="home">
-  <h1>Your Current Mood</h1>
+<section class="home mood-page">
 
-  <p id="current-mood">—</p>
+  <h1 class="page-title">
+    Your Current Mood
+  </h1>
 
-  <button id="analyze-btn" class="btn-primary">
-    Analyze Mood
-  </button>
+  <div class="mood-center">
+
+    <p id="current-mood">—</p>
+
+    <div class="mood-buttons">
+
+      <button
+        id="analyze-btn"
+        class="btn-primary">
+
+        ANALYZE MOOD
+      </button>
+
+      <button
+        id="change-mood-btn-page"
+        class="btn-primary">
+
+        CHANGE MOOD
+      </button>
+
+    </div>
+  </div>
 
   <section class="recommendations">
-    <h2>Recommended for You</h2>
+
+    <h2>
+      Recommended for You
+    </h2>
+
     <ul id="mood-recommendations"></ul>
+
   </section>
+
 </section>
 {% endblock %}
