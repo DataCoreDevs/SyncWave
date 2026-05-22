@@ -546,3 +546,68 @@ footer p {
     margin-bottom: 50px;
   }
 }
+
+/* ===========================
+   S25 HERO FIX (TIGHTER)
+=========================== */
+
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  min-height: 36vh;
+}
+
+.hero-content {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-title {
+  margin-bottom: 22px !important;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.hero-buttons a {
+  display: flex;
+  justify-content: center;
+}
+
+/* tighter spacing globally */
+
+h1 {
+  margin-bottom: 38px !important;
+}
+
+h2 {
+  margin-top: 45px !important;
+  margin-bottom: 38px !important;
+}
+
+.page-title {
+  margin-bottom: 42px !important;
+}
+
+.mood-buttons {
+  margin-bottom: 45px !important;
+}
+
+#mood-recommendations,
+#history-list,
+#recent-list {
+  margin-top: 20px !important;
+}
+
+footer {
+  margin-top: 45px !important;
+}
