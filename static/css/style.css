@@ -74,6 +74,7 @@ body {
 
 .particles span {
   position: absolute;
+
   bottom: -50px;
 
   width: 6px;
@@ -82,14 +83,25 @@ body {
   border-radius: 50%;
 
   background:
-    rgba(73, 184, 126, 0.55);
+    rgba(120,255,185,0.42);
 
   box-shadow:
-    0 0 12px rgba(73,184,126,0.55),
-    0 0 22px rgba(73,184,126,0.25);
+    0 0 12px rgba(
+      120,255,185,0.52
+    ),
+
+    0 0 24px rgba(
+      120,255,185,0.26
+    ),
+
+    0 0 45px rgba(
+      120,255,185,0.10
+    );
 
   animation:
     floatParticles linear infinite;
+
+  opacity: 0;
 }
 
 .particles span:nth-child(1){left:4%;animation-duration:16s;}
@@ -611,3 +623,704 @@ h2 {
 footer {
   margin-top: 45px !important;
 }
+
+/* ===========================
+   S26 FIRST TIME PAGE
+=========================== */
+
+.first-time-page {
+  text-align: center;
+}
+
+.mood-hero {
+  margin-bottom: 35px;
+}
+
+.mood-subtitle {
+  max-width: 650px;
+  margin: 0 auto;
+
+  color: rgba(255,255,255,0.72);
+
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.premium-mood-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(240px, 1fr));
+
+  gap: 24px;
+
+  margin-top: 45px;
+}
+
+.premium-mood-card {
+  position: relative;
+
+  background:
+    rgba(255,255,255,0.05);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  border-radius: 30px;
+
+  backdrop-filter: blur(10px);
+
+  padding: 35px 20px;
+
+  cursor: pointer;
+
+  transition: all 0.35s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.premium-mood-card:hover {
+  transform:
+    translateY(-10px)
+    scale(1.02);
+
+  border-color:
+    rgba(110,255,180,0.25);
+
+  box-shadow:
+    0 0 45px rgba(70,255,140,0.15);
+}
+
+.mood-emoji {
+  font-size: 2.8rem;
+  margin-bottom: 18px;
+}
+
+.mood-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 10px;
+}
+
+.mood-desc {
+  color:
+    rgba(255,255,255,0.65);
+
+  font-size: 0.95rem;
+}
+
+/* ===========================
+   S26 FORCE FIX
+=========================== */
+
+.first-time-page {
+  text-align: center;
+}
+
+.first-time-page .page-title {
+  margin-bottom: 16px !important;
+}
+
+.first-time-page .mood-subtitle {
+  display: block !important;
+
+  max-width: 650px;
+  margin: 0 auto 38px auto !important;
+
+  color: rgba(255,255,255,0.72);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.first-time-page .premium-mood-grid {
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(240px, 1fr));
+
+  gap: 22px;
+
+  margin-top: 0 !important;
+}
+
+.first-time-page .premium-mood-card {
+  background:
+    rgba(255,255,255,0.05) !important;
+
+  border:
+    1px solid rgba(255,255,255,0.08) !important;
+
+  border-radius: 30px !important;
+
+  backdrop-filter: blur(10px);
+
+  padding: 32px 20px !important;
+
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+
+  transition: .35s ease;
+}
+
+.first-time-page .premium-mood-card:hover {
+  transform:
+    translateY(-8px)
+    scale(1.02);
+
+  border-color:
+    rgba(110,255,180,0.25);
+
+  box-shadow:
+    0 0 40px rgba(70,255,140,0.14);
+}
+
+.first-time-page .mood-emoji {
+  font-size: 2.6rem;
+  margin-bottom: 14px;
+}
+
+.first-time-page .mood-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  margin-bottom: 8px;
+}
+
+.first-time-page .mood-desc {
+  color:
+    rgba(255,255,255,0.62);
+
+  font-size: .92rem;
+}
+
+/* ===========================
+   S26 MOOD CARD TEXT FIX
+=========================== */
+
+.first-time-page .premium-mood-card {
+  color: #ecfff5 !important;
+}
+
+/* Emoji glow */
+
+.first-time-page .mood-emoji {
+  font-size: 2.7rem;
+
+  margin-bottom: 14px;
+
+  filter:
+    drop-shadow(
+      0 0 10px rgba(125,255,185,0.35)
+    );
+
+  text-shadow:
+    0 0 20px rgba(125,255,185,0.25),
+    0 0 40px rgba(125,255,185,0.12);
+}
+
+/* Mood title */
+
+.first-time-page .mood-name {
+  color: #ecfff5 !important;
+
+  font-size: 1.15rem;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 8px;
+
+  text-shadow:
+    0 0 18px rgba(110,255,180,0.14);
+}
+
+/* Mood description */
+
+.first-time-page .mood-desc {
+  color:
+    rgba(236,255,245,0.72) !important;
+
+  font-size: 0.92rem;
+}
+
+/* Individual mood glow */
+
+.first-time-page
+.premium-mood-card[data-mood="Chill"]
+.mood-emoji {
+
+  text-shadow:
+    0 0 18px rgba(150,255,220,0.25);
+}
+
+.first-time-page
+.premium-mood-card[data-mood="Romantic"]
+.mood-emoji {
+
+  text-shadow:
+    0 0 18px rgba(140,255,200,0.28);
+}
+
+.first-time-page
+.premium-mood-card[data-mood="Energetic"]
+.mood-emoji {
+
+  text-shadow:
+    0 0 18px rgba(170,255,180,0.30);
+}
+
+.first-time-page
+.premium-mood-card[data-mood="Sad"]
+.mood-emoji {
+
+  text-shadow:
+    0 0 18px rgba(180,255,220,0.22);
+}
+
+/* ===========================
+   S26 PREMIUM EMOJI GLOW
+=========================== */
+
+.first-time-page .mood-emoji {
+
+  font-size: 2.8rem;
+
+  margin-bottom: 16px;
+
+  opacity: 0.18;
+
+  filter:
+    grayscale(1)
+    brightness(2.5)
+
+    drop-shadow(
+      0 0 8px rgba(120,255,190,0.35)
+    )
+
+    drop-shadow(
+      0 0 20px rgba(120,255,190,0.22)
+    )
+
+    drop-shadow(
+      0 0 45px rgba(120,255,190,0.10)
+    );
+
+  transition: .35s ease;
+}
+
+.first-time-page
+.premium-mood-card:hover
+/* ===========================
+   MOOD EMOJI SILHOUETTE GLOW
+=========================== */
+
+.first-time-page .mood-emoji {
+
+  font-size: 2.9rem;
+
+  margin-bottom: 16px;
+
+  color: transparent;
+
+  opacity: 1;
+
+  filter:
+    grayscale(1)
+    brightness(0);
+
+  text-shadow:
+    0 0 6px rgba(145,255,205,0.55),
+
+    0 0 18px rgba(145,255,205,0.35),
+
+    0 0 35px rgba(145,255,205,0.18),
+
+    0 0 60px rgba(145,255,205,0.08);
+
+  transition:
+    transform .35s ease,
+    text-shadow .35s ease;
+}
+
+.first-time-page
+.premium-mood-card:hover
+/* ===========================
+   FINAL MOOD EMOJI GLOW
+=========================== */
+
+.first-time-page .mood-emoji {
+
+  font-size: 3rem !important;
+
+  margin-bottom: 18px;
+
+  color: rgba(
+    185,
+    255,
+    225,
+    0.12
+  ) !important;
+
+  filter:
+    grayscale(1)
+    brightness(1.6);
+
+  text-shadow:
+    0 0 12px rgba(165,255,215,0.55),
+
+    0 0 28px rgba(165,255,215,0.32),
+
+    0 0 55px rgba(165,255,215,0.16),
+
+    0 0 85px rgba(165,255,215,0.08);
+
+  transition:
+    transform .35s ease,
+    text-shadow .35s ease;
+}
+
+.first-time-page
+.premium-mood-card:hover
+.mood-emoji {
+
+  transform:
+    scale(1.08);
+
+  text-shadow:
+    0 0 18px rgba(185,255,225,0.7),
+
+    0 0 38px rgba(185,255,225,0.45),
+
+    0 0 70px rgba(185,255,225,0.2),
+
+    0 0 100px rgba(185,255,225,0.12);
+}
+
+/* ==========================================
+   S26 FINAL STABLE OVERRIDE
+========================================== */
+
+/* HERO */
+
+.hero-section {
+  min-height: 36vh !important;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+.hero-content {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-title {
+  margin-bottom: 20px !important;
+}
+
+.hero-buttons {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+/* TITLES */
+
+h1 {
+  text-align: center !important;
+  margin-bottom: 35px !important;
+}
+
+h2 {
+  text-align: center !important;
+
+  margin-top: 40px !important;
+  margin-bottom: 38px !important;
+}
+
+h2::after {
+  width: 120px !important;
+
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      rgba(120,255,185,0.8),
+      transparent
+    );
+}
+
+/* FIRST TIME PAGE */
+
+.first-time-page {
+  text-align: center;
+}
+
+.first-time-page .page-title {
+  margin-bottom: 12px !important;
+}
+
+.first-time-page .mood-subtitle {
+
+  max-width: 650px;
+
+  margin:
+    0 auto 34px auto !important;
+
+  color:
+    rgba(255,255,255,.72);
+
+  font-size: 1rem;
+
+  line-height: 1.8;
+}
+
+/* PREMIUM GRID */
+
+.first-time-page .premium-mood-grid {
+
+  display: grid !important;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(240px,1fr));
+
+  gap: 22px;
+
+  margin-top: 0 !important;
+}
+
+/* PREMIUM CARDS */
+
+.first-time-page
+.premium-mood-card {
+
+  background:
+    rgba(255,255,255,.05) !important;
+
+  border:
+    1px solid rgba(
+      255,255,255,.08
+    ) !important;
+
+  border-radius:
+    30px !important;
+
+  backdrop-filter:
+    blur(12px);
+
+  padding:
+    34px 20px !important;
+
+  transition:
+    .35s ease;
+
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+
+  color:
+    #ecfff5 !important;
+
+  overflow: hidden;
+}
+
+.first-time-page
+.premium-mood-card:hover {
+
+  transform:
+    translateY(-8px)
+    scale(1.02);
+
+  border-color:
+    rgba(120,255,185,.25);
+
+  box-shadow:
+    0 0 30px rgba(
+      120,255,185,.16
+    ),
+
+    0 0 55px rgba(
+      120,255,185,.08
+    );
+}
+
+/* ==========================================
+   FINAL GLOWING EMOJIS
+========================================== */
+
+.first-time-page
+.mood-emoji {
+
+  font-size: 3rem !important;
+
+  margin-bottom: 16px;
+
+  display: inline-block;
+
+  color:
+    rgba(225,255,240,.95)
+    !important;
+
+  filter:
+    drop-shadow(
+      0 0 8px rgba(
+        170,255,215,.9
+      )
+    )
+
+    drop-shadow(
+      0 0 20px rgba(
+        170,255,215,.55
+      )
+    )
+
+    drop-shadow(
+      0 0 40px rgba(
+        170,255,215,.35
+      )
+    )
+
+    drop-shadow(
+      0 0 75px rgba(
+        170,255,215,.18
+      )
+    );
+
+  transition:
+    transform .35s ease,
+    filter .35s ease;
+}
+
+.first-time-page
+.premium-mood-card:hover
+.mood-emoji {
+
+  transform:
+    scale(1.12);
+
+  filter:
+    drop-shadow(
+      0 0 12px rgba(
+        190,255,225,.95
+      )
+    )
+
+    drop-shadow(
+      0 0 28px rgba(
+        190,255,225,.65
+      )
+    )
+
+    drop-shadow(
+      0 0 55px rgba(
+        190,255,225,.42
+      )
+    )
+
+    drop-shadow(
+      0 0 95px rgba(
+        190,255,225,.25
+      )
+    );
+}
+
+/* MOOD TEXT */
+
+.first-time-page
+.mood-name {
+
+  color:
+    #ecfff5 !important;
+
+  font-size:
+    1.15rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    1px;
+
+  margin-bottom:
+    8px;
+
+  text-shadow:
+    0 0 12px rgba(
+      120,255,185,.15
+    );
+}
+
+.first-time-page
+.mood-desc {
+
+  color:
+    rgba(
+      236,255,245,.72
+    ) !important;
+
+  font-size:
+    .92rem;
+}
+
+/* FOOTER */
+
+footer {
+
+  margin-top:
+    45px !important;
+
+  text-align:
+    center;
+
+  padding:
+    30px 20px;
+}
+
+/* RANDOM PARTICLES */
+
+.particles span {
+
+  width: 6px;
+  height: 6px;
+}
+
+.particles span:nth-child(1){left:4%;animation-duration:17s;animation-delay:-2s;}
+.particles span:nth-child(2){left:8%;animation-duration:23s;animation-delay:-8s;}
+.particles span:nth-child(3){left:12%;animation-duration:15s;animation-delay:-5s;}
+.particles span:nth-child(4){left:18%;animation-duration:28s;animation-delay:-13s;}
+.particles span:nth-child(5){left:24%;animation-duration:19s;animation-delay:-4s;}
+.particles span:nth-child(6){left:30%;animation-duration:31s;animation-delay:-14s;}
+.particles span:nth-child(7){left:37%;animation-duration:16s;animation-delay:-7s;}
+.particles span:nth-child(8){left:43%;animation-duration:26s;animation-delay:-11s;}
+.particles span:nth-child(9){left:50%;animation-duration:20s;animation-delay:-3s;}
+.particles span:nth-child(10){left:56%;animation-duration:34s;animation-delay:-17s;}
+.particles span:nth-child(11){left:63%;animation-duration:22s;animation-delay:-9s;}
+.particles span:nth-child(12){left:69%;animation-duration:18s;animation-delay:-5s;}
+.particles span:nth-child(13){left:74%;animation-duration:27s;animation-delay:-12s;}
+.particles span:nth-child(14){left:79%;animation-duration:14s;animation-delay:-2s;}
+.particles span:nth-child(15){left:84%;animation-duration:32s;animation-delay:-15s;}
+.particles span:nth-child(16){left:88%;animation-duration:21s;animation-delay:-8s;}
+.particles span:nth-child(17){left:92%;animation-duration:29s;animation-delay:-14s;}
+.particles span:nth-child(18){left:96%;animation-duration:17s;animation-delay:-3s;}
+.particles span:nth-child(19){left:99%;animation-duration:24s;animation-delay:-9s;}
+.particles span:nth-child(20){left:54%;animation-duration:13s;animation-delay:-4s;}
+.particles span:nth-child(21){left:28%;animation-duration:35s;animation-delay:-18s;}
+.particles span:nth-child(22){left:72%;animation-duration:25s;animation-delay:-10s;}
+.particles span:nth-child(23){left:39%;animation-duration:16s;animation-delay:-6s;}
+.particles span:nth-child(24){left:87%;animation-duration:30s;animation-delay:-16s;}

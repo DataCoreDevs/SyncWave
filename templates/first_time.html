@@ -1,14 +1,90 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="home">
-  <h1>Select Your Mood</h1>
 
-  <div class="mood-grid">
-    <button class="btn-primary mood-btn" data-mood="Chill">Chill</button>
-    <button class="btn-primary mood-btn" data-mood="Romantic">Romantic</button>
-    <button class="btn-primary mood-btn" data-mood="Energetic">Energetic</button>
-    <button class="btn-primary mood-btn" data-mood="Sad">Sad</button>
+<section class="home first-time-page">
+
+  <div class="mood-hero">
+
+    <h1 class="page-title">
+      SELECT YOUR MOOD
+    </h1>
+
+    <p class="mood-subtitle">
+      Choose the vibe you’re feeling right now
+      and let SyncWave personalize your music.
+    </p>
+
   </div>
+
+  <div class="premium-mood-grid">
+
+    <button
+      class="premium-mood-card mood-btn"
+      data-mood="Chill">
+
+      <span class="mood-emoji">🌊</span>
+
+      <span class="mood-name">
+        CHILL
+      </span>
+
+      <span class="mood-desc">
+        Calm • Relaxed • Peaceful
+      </span>
+
+    </button>
+
+    <button
+      class="premium-mood-card mood-btn"
+      data-mood="Romantic">
+
+      <span class="mood-emoji">💚</span>
+
+      <span class="mood-name">
+        ROMANTIC
+      </span>
+
+      <span class="mood-desc">
+        Love • Soft • Intimate
+      </span>
+
+    </button>
+
+    <button
+      class="premium-mood-card mood-btn"
+      data-mood="Energetic">
+
+      <span class="mood-emoji">⚡</span>
+
+      <span class="mood-name">
+        ENERGETIC
+      </span>
+
+      <span class="mood-desc">
+        Power • Hype • Motivation
+      </span>
+
+    </button>
+
+    <button
+      class="premium-mood-card mood-btn"
+      data-mood="Sad">
+
+      <span class="mood-emoji">🌧️</span>
+
+      <span class="mood-name">
+        SAD
+      </span>
+
+      <span class="mood-desc">
+        Emotional • Deep • Slow
+      </span>
+
+    </button>
+
+  </div>
+
 </section>
+
 {% endblock %}
