@@ -1,6 +1,21 @@
 {
-  "Chill": [],
-  "Romantic": [],
-  "Energetic": [],
-  "Sad": []
+  "mood2idx": {
+    "Chill": 0,
+    "Energetic": 1,
+    "Sad": 2,
+    "Romantic": 3
+  },
+  "idx2mood": {
+    "0": "Chill",
+    "1": "Energetic",
+    "2": "Sad",
+    "3": "Romantic"
+  },
+  "moods": [
+    "Chill",
+    "Energetic",
+    "Sad",
+    "Romantic"
+  ],
+  "window": 5
 }

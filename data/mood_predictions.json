@@ -1,3 +1,69 @@
 {
-  "predicted_mood": null
+  "model": "lstm",
+  "window_size": 5,
+  "moods": [
+    "Chill",
+    "Energetic",
+    "Sad",
+    "Romantic"
+  ],
+  "mood2idx": {
+    "Chill": 0,
+    "Energetic": 1,
+    "Sad": 2,
+    "Romantic": 3
+  },
+  "description": "Predicts next mood from last 5 mood history",
+  "sample_predictions": [
+    {
+      "input": [
+        "Sad",
+        "Sad",
+        "Sad",
+        "Chill",
+        "Chill"
+      ],
+      "predicted": "Chill"
+    },
+    {
+      "input": [
+        "Energetic",
+        "Energetic",
+        "Energetic",
+        "Energetic",
+        "Romantic"
+      ],
+      "predicted": "Romantic"
+    },
+    {
+      "input": [
+        "Romantic",
+        "Chill",
+        "Chill",
+        "Romantic",
+        "Romantic"
+      ],
+      "predicted": "Romantic"
+    },
+    {
+      "input": [
+        "Sad",
+        "Sad",
+        "Chill",
+        "Chill",
+        "Energetic"
+      ],
+      "predicted": "Energetic"
+    },
+    {
+      "input": [
+        "Chill",
+        "Chill",
+        "Chill",
+        "Chill",
+        "Chill"
+      ],
+      "predicted": "Chill"
+    }
+  ]
 }
