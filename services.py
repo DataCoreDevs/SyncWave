@@ -1,5 +1,6 @@
 import json
 import os
+import random
 import joblib
 from collections import Counter
 
@@ -86,7 +87,6 @@ def analyze_user_mood(
         "clustered_songs.json"
     )
 
-    # LOAD MODELS
     kmeans = joblib.load(
         kmeans_path
     )
@@ -95,7 +95,6 @@ def analyze_user_mood(
         scaler_path
     )
 
-    # LOAD SONG DATA
     with open(
         clustered_path,
         "r",
@@ -106,7 +105,6 @@ def analyze_user_mood(
             json.load(f)
         )
 
-    # FLATTEN SONGS
     all_songs = []
 
     for mood in (
@@ -153,7 +151,6 @@ def analyze_user_mood(
                 match
             )
 
-    # FALLBACK
     if len(
         matched_songs
     ) == 0:
@@ -184,7 +181,6 @@ def analyze_user_mood(
             )
         )
 
-        # RUN KMEANS
         kmeans.predict(
             scaled_vector
         )
@@ -198,7 +194,6 @@ def analyze_user_mood(
 
         )
 
-    # MAJORITY VOTE
     final_mood = (
         Counter(
             predicted_moods
@@ -207,3 +202,62 @@ def analyze_user_mood(
     )
 
     return final_mood
+
+
+def get_mood_recommendations(
+    mood
+):
+
+    clustered_path = os.path.join(
+        DATA_DIR,
+        "clustered_songs.json"
+    )
+
+    with open(
+        clustered_path,
+        "r",
+        encoding="utf-8"
+    ) as f:
+
+        clustered_songs = (
+            json.load(f)
+        )
+
+    mood_songs = (
+        clustered_songs.get(
+            mood,
+            []
+        )
+    )
+
+    random.shuffle(
+        mood_songs
+    )
+
+    selected_songs = (
+        mood_songs[:5]
+    )
+
+    recommendations = []
+
+    for song in (
+        selected_songs
+    ):
+
+        recommendations.append({
+
+            "track_name":
+                song.get(
+                    "track_name",
+                    "Unknown Song"
+                ),
+
+            "artist":
+                song.get(
+                    "artists",
+                    "Unknown Artist"
+                )
+
+        })
+
+    return recommendations

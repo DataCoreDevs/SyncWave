@@ -1623,3 +1623,105 @@ footer {
   margin-bottom:
     32px;
 }
+
+/* ===========================
+   RECOMMENDATIONS
+=========================== */
+
+#mood-recommendations {
+
+  list-style: none;
+
+  padding: 0;
+
+  margin-top: 30px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 16px;
+
+}
+
+.recommendation-card {
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.06
+    );
+
+  border:
+    1px solid rgba(
+      120,
+      255,
+      185,
+      0.15
+    );
+
+  border-radius:
+    20px;
+
+  padding:
+    18px 22px;
+
+  color:
+    #f3fff8;
+
+  font-size:
+    1rem;
+
+  font-weight:
+    500;
+
+  backdrop-filter:
+    blur(10px);
+
+  transition:
+    all 0.3s ease;
+
+  box-shadow:
+    0 0 12px rgba(
+      120,
+      255,
+      185,
+      0.08
+    );
+
+}
+
+.recommendation-card:hover {
+
+  transform:
+    translateY(-4px);
+
+  box-shadow:
+    0 0 28px rgba(
+      120,
+      255,
+      185,
+      0.22
+    );
+
+}
+
+/* RECOMMENDATION TITLE */
+
+.recommendations h2 {
+
+  margin-top:
+    50px;
+
+  margin-bottom:
+    20px;
+
+  text-align:
+    center;
+
+  font-size:
+    1.8rem;
+
+}

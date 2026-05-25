@@ -9,7 +9,8 @@ from flask import (
 from services import (
     load_songs,
     load_moods,
-    analyze_user_mood
+    analyze_user_mood,
+    get_mood_recommendations
 )
 
 app = Flask(__name__)
@@ -94,6 +95,24 @@ def analyze_mood():
             mood
 
     })
+
+
+@app.route(
+    "/recommendations/<mood>"
+)
+def recommendations(
+    mood
+):
+
+    songs = (
+        get_mood_recommendations(
+            mood
+        )
+    )
+
+    return jsonify(
+        songs
+    )
 
 
 @app.route("/check")

@@ -83,6 +83,10 @@ document.addEventListener(
   "DOMContentLoaded",
   () => {
 
+    /* ===========================
+       ELEMENTS
+    =========================== */
+
     const analyzeBtn =
       document.getElementById(
         "analyze-btn"
@@ -107,6 +111,114 @@ document.addEventListener(
       document.getElementById(
         "current-mood"
       );
+
+    /* ===========================
+       RECOMMENDATIONS
+    =========================== */
+
+    async function
+    renderRecommendations(
+      mood
+    ) {
+
+      const list =
+        document.getElementById(
+          "mood-recommendations"
+        );
+
+      if (
+        !list
+      ) return;
+
+      list.innerHTML =
+        "";
+
+      try {
+
+        const response =
+          await fetch(
+
+            `/recommendations/${mood}`
+
+          );
+
+        const songs =
+          await response
+            .json();
+
+        songs.forEach(
+          song => {
+
+            const li =
+              document.createElement(
+                "li"
+              );
+
+            li.className =
+              "recommendation-card";
+
+            li.innerHTML = `
+
+              <strong>
+                🎵
+                ${song.track_name}
+              </strong>
+
+              <br>
+
+              <span>
+                ${song.artist}
+              </span>
+
+            `;
+
+            list.appendChild(
+              li
+            );
+
+          }
+        );
+
+      }
+
+      catch (
+        error
+      ) {
+
+        console.error(
+          error
+        );
+
+      }
+
+    }
+
+    /* ===========================
+       LOAD CURRENT MOOD
+    =========================== */
+
+    if (
+      moodText
+    ) {
+
+      const currentMood =
+        localStorage.getItem(
+          "currentMood"
+        ) ||
+        "Chill";
+
+      moodText.textContent =
+        currentMood;
+
+      renderRecommendations(
+        currentMood
+      );
+
+    }
+
+    /* ===========================
+       ANALYZE MOOD
+    =========================== */
 
     if (
       analyzeBtn
@@ -180,7 +292,7 @@ document.addEventListener(
 
               const data =
                 await response
-                .json();
+                  .json();
 
               const mood =
                 data.mood;
@@ -198,6 +310,11 @@ document.addEventListener(
                   mood
 
                 );
+
+              // update recommendations
+              renderRecommendations(
+                mood
+              );
 
               // save history
               let history =
@@ -222,7 +339,8 @@ document.addEventListener(
                   }
                 );
 
-              function getOrdinal(
+              function
+              getOrdinal(
                 n
               ) {
 
@@ -313,6 +431,10 @@ document.addEventListener(
         );
 
     }
+
+    /* ===========================
+       CLOSE POPUP
+    =========================== */
 
     if (
       closePopup
