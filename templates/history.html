@@ -1,8 +1,115 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <section class="home">
-  <h1>Mood History (Last 14 Days)</h1>
-  <ul id="history-list"></ul>
+
+  <h1>
+    Mood History
+  </h1>
+
+  <p class="history-subtitle">
+    Your Last 14 Days
+  </p>
+
+  <div
+    id="history-list"
+    class="history-container">
+
+  </div>
+
 </section>
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    const historyContainer =
+      document.getElementById(
+        "history-list"
+      );
+
+    const moodHistory =
+      JSON.parse(
+        localStorage.getItem(
+          "moodHistory"
+        )
+      ) || [];
+
+    // Empty State
+    if (
+      moodHistory.length === 0
+    ) {
+
+      historyContainer.innerHTML = `
+
+        <p class="empty-history">
+          No mood history yet 🎧
+        </p>
+
+      `;
+
+      return;
+    }
+
+    // Latest first
+    moodHistory
+      .slice()
+      .reverse()
+      .filter(
+        entry =>
+          entry.date &&
+          entry.mood
+      )
+      .forEach(entry => {
+
+        let emoji = "🎧";
+
+        if (
+          entry.mood ===
+          "Chill"
+        ) emoji = "😌";
+
+        if (
+          entry.mood ===
+          "Romantic"
+        ) emoji = "❤️";
+
+        if (
+          entry.mood ===
+          "Energetic"
+        ) emoji = "⚡";
+
+        if (
+          entry.mood ===
+          "Sad"
+        ) emoji = "🥀";
+
+        historyContainer.innerHTML += `
+
+          <div
+            class="history-card">
+
+            <h3>
+              ${entry.date}
+            </h3>
+
+            <p>
+              ${emoji}
+              ${entry.mood}
+            </p>
+
+          </div>
+
+        `;
+
+      });
+
+  }
+);
+
+</script>
+
 {% endblock %}

@@ -1,104 +1,218 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-  const currentPath =
-    window.location.pathname;
+    const currentPath =
+      window.location.pathname;
 
-  const moodBtns =
-    document.querySelectorAll(".mood-btn");
+    const moodBtns =
+      document.querySelectorAll(
+        ".mood-btn"
+      );
 
-  const moodEl =
-    document.getElementById(
-      "current-mood"
-    );
+    const moodEl =
+      document.getElementById(
+        "current-mood"
+      );
 
-  const changeMoodBtnPage =
-    document.getElementById(
-      "change-mood-btn-page"
-    );
+    const changeMoodBtnPage =
+      document.getElementById(
+        "change-mood-btn-page"
+      );
 
-  /* ===========================
-     ALWAYS OPEN FIRST-TIME PAGE
-     ON FRESH APP OPEN
-  =========================== */
+    /* ===========================
+       ALWAYS OPEN FIRST-TIME PAGE
+       ON FRESH APP OPEN
+    =========================== */
 
-  const skipFirstTime =
-    sessionStorage.getItem(
-      "skipFirstTime"
-    );
+    const skipFirstTime =
+      sessionStorage.getItem(
+        "skipFirstTime"
+      );
 
-  if (
-    currentPath !== "/first-time" &&
-    !skipFirstTime
-  ) {
+    if (
+      currentPath !==
+        "/first-time" &&
+      !skipFirstTime
+    ) {
 
-    window.location.href =
-      "/first-time";
+      window.location.href =
+        "/first-time";
 
-    return;
-  }
+      return;
+    }
 
-  /* ===========================
-     MOOD SELECTION
-  =========================== */
+    /* ===========================
+       SAVE MOOD HISTORY
+    =========================== */
 
-  moodBtns.forEach(btn => {
+    function saveMoodHistory(
+      mood
+    ) {
 
-    btn.addEventListener(
-      "click",
-      () => {
+      const date =
+        new Date();
 
-        const mood =
-          btn.dataset.mood;
+      const day =
+        date.getDate();
 
-        localStorage.setItem(
-          "currentMood",
+      const month =
+        date.toLocaleString(
+          "default",
+          {
+            month:
+              "long"
+          }
+        );
+
+      function getOrdinal(
+        n
+      ) {
+
+        if (
+          n > 3 &&
+          n < 21
+        ) return "th";
+
+        switch (
+          n % 10
+        ) {
+
+          case 1:
+            return "st";
+
+          case 2:
+            return "nd";
+
+          case 3:
+            return "rd";
+
+          default:
+            return "th";
+
+        }
+
+      }
+
+      const today =
+        `${day}${getOrdinal(
+          day
+        )} ${month}`;
+
+      let history =
+        JSON.parse(
+          localStorage.getItem(
+            "moodHistory"
+          )
+        ) || [];
+
+      history.push({
+
+        date:
+          today,
+
+        mood:
           mood
+
+      });
+
+      // keep last 14 days
+      history =
+        history.slice(
+          -14
         );
 
-        // allow access to home
-        sessionStorage.setItem(
-          "skipFirstTime",
-          "true"
+      localStorage.setItem(
+        "moodHistory",
+        JSON.stringify(
+          history
+        )
+      );
+
+    }
+
+    /* ===========================
+       MOOD SELECTION
+    =========================== */
+
+    moodBtns.forEach(
+      btn => {
+
+        btn.addEventListener(
+          "click",
+          () => {
+
+            const mood =
+              btn.dataset
+                .mood;
+
+            // save current mood
+            localStorage.setItem(
+              "currentMood",
+              mood
+            );
+
+            // save history
+            saveMoodHistory(
+              mood
+            );
+
+            // allow app access
+            sessionStorage.setItem(
+              "skipFirstTime",
+              "true"
+            );
+
+            // redirect home
+            window.location.href =
+              "/";
+
+          }
         );
 
-        window.location.href =
-          "/";
       }
     );
 
-  });
+    /* ===========================
+       SHOW CURRENT MOOD
+    =========================== */
 
-  /* ===========================
-     SHOW CURRENT MOOD
-  =========================== */
+    if (
+      moodEl
+    ) {
 
-  if (moodEl) {
+      moodEl.textContent =
+        localStorage.getItem(
+          "currentMood"
+        ) ||
+        "NOT SELECTED";
 
-    moodEl.textContent =
-      localStorage.getItem(
-        "currentMood"
-      ) || "NOT SELECTED";
-  }
+    }
 
-  /* ===========================
-     CHANGE MOOD BUTTON
-  =========================== */
+    /* ===========================
+       CHANGE MOOD BUTTON
+    =========================== */
 
-  if (changeMoodBtnPage) {
+    if (
+      changeMoodBtnPage
+    ) {
 
-    changeMoodBtnPage.addEventListener(
-      "click",
-      () => {
+      changeMoodBtnPage
+        .addEventListener(
+          "click",
+          () => {
 
-        sessionStorage.removeItem(
-          "skipFirstTime"
+            sessionStorage.removeItem(
+              "skipFirstTime"
+            );
+
+            window.location.href =
+              "/first-time";
+
+          }
         );
 
-        window.location.href =
-          "/first-time";
-      }
-    );
+    }
 
   }
-
-});
+);

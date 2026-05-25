@@ -1,8 +1,88 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <section class="home">
-  <h1>Recent Plays</h1>
-  <ul id="recent-list"></ul>
+
+  <h1>
+    Recent Plays
+  </h1>
+
+  <div
+    id="recent-list"
+    class="recent-container">
+
+  </div>
+
 </section>
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    const recentList =
+      document.getElementById(
+        "recent-list"
+      );
+
+    const recentSongs =
+      JSON.parse(
+        sessionStorage.getItem(
+          "recentSongs"
+        )
+      ) || [];
+
+    // Empty state
+    if (
+      recentSongs.length === 0
+    ) {
+
+      recentList.innerHTML = `
+
+        <p class="empty-recent">
+          No recent songs yet 🎧
+        </p>
+
+      `;
+
+      return;
+    }
+
+    // Render songs
+    recentSongs.forEach(
+      (song) => {
+
+        recentList.innerHTML += `
+
+          <div
+            class="recent-song-card">
+
+            <h3>
+              ${song.name}
+            </h3>
+
+            <iframe
+              style="border-radius:16px"
+              src="https://open.spotify.com/embed/track/${song.id}?theme=0"
+              width="100%"
+              height="152"
+              frameborder="0"
+              allow="autoplay; encrypted-media"
+              loading="lazy">
+            </iframe>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+  }
+);
+
+</script>
+
 {% endblock %}

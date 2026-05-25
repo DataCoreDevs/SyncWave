@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <section class="home mood-page">
 
   <h1 class="page-title">
@@ -9,7 +10,9 @@
 
   <div class="mood-center">
 
-    <p id="current-mood">—</p>
+    <p id="current-mood">
+      —
+    </p>
 
     <div class="mood-buttons">
 
@@ -28,6 +31,7 @@
       </button>
 
     </div>
+
   </div>
 
   <section class="recommendations">
@@ -36,9 +40,303 @@
       Recommended for You
     </h2>
 
-    <ul id="mood-recommendations"></ul>
+    <ul
+      id="mood-recommendations">
+
+    </ul>
 
   </section>
 
 </section>
+
+<!-- MOOD ANALYZE POPUP -->
+<div
+  id="mood-popup"
+  class="mood-popup hidden">
+
+  <div
+    class="popup-card">
+
+    <h2>
+      YOUR MOOD IS
+    </h2>
+
+    <h1
+      id="popup-mood">
+
+    </h1>
+
+    <button
+      id="close-popup"
+      class="btn-primary">
+
+      AWESOME 🔥
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    const analyzeBtn =
+      document.getElementById(
+        "analyze-btn"
+      );
+
+    const popup =
+      document.getElementById(
+        "mood-popup"
+      );
+
+    const popupMood =
+      document.getElementById(
+        "popup-mood"
+      );
+
+    const closePopup =
+      document.getElementById(
+        "close-popup"
+      );
+
+    const moodText =
+      document.getElementById(
+        "current-mood"
+      );
+
+    if (
+      analyzeBtn
+    ) {
+
+      analyzeBtn
+        .addEventListener(
+          "click",
+          async () => {
+
+            const recentSongs =
+              JSON.parse(
+                sessionStorage.getItem(
+                  "recentSongs"
+                )
+              ) || [];
+
+            const last5 =
+              recentSongs
+              .slice(
+                0,
+                5
+              )
+              .map(
+                song =>
+                  song.name
+              );
+
+            if (
+              last5.length === 0
+            ) {
+
+              alert(
+                "Play at least one song first 🎧"
+              );
+
+              return;
+            }
+
+            try {
+
+              const response =
+                await fetch(
+
+                  "/analyze-mood",
+
+                  {
+
+                    method:
+                      "POST",
+
+                    headers:
+                      {
+
+                        "Content-Type":
+                          "application/json"
+
+                      },
+
+                    body:
+                      JSON.stringify({
+
+                        songs:
+                          last5
+
+                      })
+
+                  }
+
+                );
+
+              const data =
+                await response
+                .json();
+
+              const mood =
+                data.mood;
+
+              // update mood
+              moodText
+                .textContent =
+                mood;
+
+              localStorage
+                .setItem(
+
+                  "currentMood",
+
+                  mood
+
+                );
+
+              // save history
+              let history =
+                JSON.parse(
+                  localStorage.getItem(
+                    "moodHistory"
+                  )
+                ) || [];
+
+              const date =
+                new Date();
+
+              const day =
+                date.getDate();
+
+              const month =
+                date.toLocaleString(
+                  "default",
+                  {
+                    month:
+                      "long"
+                  }
+                );
+
+              function getOrdinal(
+                n
+              ) {
+
+                if (
+                  n > 3 &&
+                  n < 21
+                ) return "th";
+
+                switch (
+                  n % 10
+                ) {
+
+                  case 1:
+                    return "st";
+
+                  case 2:
+                    return "nd";
+
+                  case 3:
+                    return "rd";
+
+                  default:
+                    return "th";
+
+                }
+
+              }
+
+              const today =
+                `${day}${getOrdinal(
+                  day
+                )} ${month}`;
+
+              history.push({
+
+                date:
+                  today,
+
+                mood:
+                  mood
+
+              });
+
+              history =
+                history.slice(
+                  -14
+                );
+
+              localStorage
+                .setItem(
+
+                  "moodHistory",
+
+                  JSON.stringify(
+                    history
+                  )
+
+                );
+
+              // popup
+              popupMood
+                .textContent =
+                mood;
+
+              popup
+                .classList
+                .remove(
+                  "hidden"
+                );
+
+            }
+
+            catch (
+              error
+            ) {
+
+              console.error(
+                error
+              );
+
+              alert(
+                "Mood analysis failed 😭"
+              );
+
+            }
+
+          }
+        );
+
+    }
+
+    if (
+      closePopup
+    ) {
+
+      closePopup
+        .addEventListener(
+          "click",
+          () => {
+
+            popup
+              .classList
+              .add(
+                "hidden"
+              );
+
+          }
+        );
+
+    }
+
+  }
+);
+
+</script>
+
 {% endblock %}
