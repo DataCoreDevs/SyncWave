@@ -1,7 +1,6 @@
 import json
 import os
 import random
-import joblib
 from collections import Counter
 
 BASE_DIR = os.path.dirname(
@@ -12,18 +11,6 @@ DATA_DIR = os.path.join(
     BASE_DIR,
     "data"
 )
-
-FEATURES = [
-    "danceability",
-    "energy",
-    "valence",
-    "tempo",
-    "acousticness",
-    "instrumentalness",
-    "speechiness",
-    "liveness",
-    "popularity"
-]
 
 
 def load_songs():
@@ -72,27 +59,9 @@ def analyze_user_mood(
     played_songs
 ):
 
-    kmeans_path = os.path.join(
-        DATA_DIR,
-        "kmeans_model.pkl"
-    )
-
-    scaler_path = os.path.join(
-        DATA_DIR,
-        "scaler.pkl"
-    )
-
     clustered_path = os.path.join(
         DATA_DIR,
         "clustered_songs.json"
-    )
-
-    kmeans = joblib.load(
-        kmeans_path
-    )
-
-    scaler = joblib.load(
-        scaler_path
     )
 
     with open(
@@ -123,22 +92,27 @@ def analyze_user_mood(
         played_songs
     ):
 
+        song_name = str(
+            song_name
+        ).strip().lower()
+
         match = next(
 
             (
                 song
                 for song in
                 all_songs
+
                 if str(
                     song.get(
                         "track_name",
                         ""
                     )
-                ).lower()
+                )
+                .strip()
+                .lower()
                 ==
-                str(
-                    song_name
-                ).lower()
+                song_name
             ),
 
             None
@@ -151,39 +125,32 @@ def analyze_user_mood(
                 match
             )
 
+        else:
+
+            print(
+                f"Song not found: {song_name}"
+            )
+
+    # If nothing matched,
+    # still return mood
     if len(
         matched_songs
     ) == 0:
 
-        return "Chill"
+        return random.choice([
+
+            "Chill",
+            "Romantic",
+            "Energetic",
+            "Sad"
+
+        ])
 
     predicted_moods = []
 
     for song in (
         matched_songs
     ):
-
-        feature_vector = [
-
-            song.get(
-                feature,
-                0
-            )
-
-            for feature in
-            FEATURES
-
-        ]
-
-        scaled_vector = (
-            scaler.transform(
-                [feature_vector]
-            )
-        )
-
-        kmeans.predict(
-            scaled_vector
-        )
 
         predicted_moods.append(
 
@@ -261,3 +228,68 @@ def get_mood_recommendations(
         })
 
     return recommendations
+
+
+def predict_next_mood(
+    mood_history
+):
+
+    if len(
+        mood_history
+    ) < 5:
+
+        return (
+            "Not enough mood data yet"
+        )
+
+    last_5 = (
+        mood_history[-5:]
+    )
+
+    mood_count = Counter(
+        last_5
+    )
+
+    base_mood = (
+        mood_count
+        .most_common(1)[0][0]
+    )
+
+    # 70% same mood
+    if random.random() < 0.7:
+
+        return base_mood
+
+    # 30% smart variation
+    alternatives = {
+
+        "Romantic": [
+            "Chill",
+            "Sad"
+        ],
+
+        "Chill": [
+            "Romantic",
+            "Energetic"
+        ],
+
+        "Energetic": [
+            "Chill",
+            "Romantic"
+        ],
+
+        "Sad": [
+            "Chill",
+            "Romantic"
+        ]
+
+    }
+
+    return random.choice(
+
+        alternatives.get(
+            base_mood,
+            ["Chill"]
+        )
+
+    )

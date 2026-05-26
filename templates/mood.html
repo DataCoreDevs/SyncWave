@@ -32,6 +32,20 @@
 
     </div>
 
+    <!-- FUTURE MOOD -->
+    <div
+      class="future-mood-card">
+
+      <h2>
+        🔮 Tomorrow's Mood Prediction
+      </h2>
+
+      <p id="future-mood">
+        Loading...
+      </p>
+
+    </div>
+
   </div>
 
   <section class="recommendations">
@@ -42,14 +56,13 @@
 
     <ul
       id="mood-recommendations">
-
     </ul>
 
   </section>
 
 </section>
 
-<!-- MOOD ANALYZE POPUP -->
+<!-- MOOD POPUP -->
 <div
   id="mood-popup"
   class="mood-popup hidden">
@@ -63,7 +76,6 @@
 
     <h1
       id="popup-mood">
-
     </h1>
 
     <button
@@ -82,10 +94,6 @@
 document.addEventListener(
   "DOMContentLoaded",
   () => {
-
-    /* ===========================
-       ELEMENTS
-    =========================== */
 
     const analyzeBtn =
       document.getElementById(
@@ -113,6 +121,89 @@ document.addEventListener(
       );
 
     /* ===========================
+       FUTURE MOOD PREDICTION
+    =========================== */
+
+    async function
+    loadFutureMood() {
+
+      const moodEl =
+        document.getElementById(
+          "future-mood"
+        );
+
+      if (!moodEl)
+        return;
+
+      const history =
+        JSON.parse(
+          localStorage.getItem(
+            "moodHistory"
+          )
+        ) || [];
+
+      const moods =
+        history.map(
+          item =>
+            item.mood
+        );
+
+      try {
+
+        const response =
+          await fetch(
+
+            "/predict-mood",
+
+            {
+
+              method:
+                "POST",
+
+              headers:
+                {
+                  "Content-Type":
+                    "application/json"
+                },
+
+              body:
+                JSON.stringify({
+
+                  history:
+                    moods
+
+                })
+
+            }
+
+          );
+
+        const data =
+          await response
+            .json();
+
+        moodEl.textContent =
+          data.prediction ||
+          "Unavailable";
+
+      }
+
+      catch (
+        error
+      ) {
+
+        console.error(
+          error
+        );
+
+        moodEl.textContent =
+          "Unavailable";
+
+      }
+
+    }
+
+    /* ===========================
        RECOMMENDATIONS
     =========================== */
 
@@ -126,9 +217,8 @@ document.addEventListener(
           "mood-recommendations"
         );
 
-      if (
-        !list
-      ) return;
+      if (!list)
+        return;
 
       list.innerHTML =
         "";
@@ -160,8 +250,7 @@ document.addEventListener(
             li.innerHTML = `
 
               <strong>
-                🎵
-                ${song.track_name}
+                🎵 ${song.track_name}
               </strong>
 
               <br>
@@ -216,6 +305,8 @@ document.addEventListener(
 
     }
 
+    loadFutureMood();
+
     /* ===========================
        ANALYZE MOOD
     =========================== */
@@ -238,10 +329,7 @@ document.addEventListener(
 
             const last5 =
               recentSongs
-              .slice(
-                0,
-                5
-              )
+              .slice(0, 5)
               .map(
                 song =>
                   song.name
@@ -272,10 +360,8 @@ document.addEventListener(
 
                     headers:
                       {
-
                         "Content-Type":
                           "application/json"
-
                       },
 
                     body:
@@ -297,26 +383,21 @@ document.addEventListener(
               const mood =
                 data.mood;
 
-              // update mood
               moodText
                 .textContent =
                 mood;
 
               localStorage
                 .setItem(
-
                   "currentMood",
-
                   mood
-
                 );
 
-              // update recommendations
               renderRecommendations(
                 mood
               );
 
-              // save history
+              // save mood history
               let history =
                 JSON.parse(
                   localStorage.getItem(
@@ -399,6 +480,9 @@ document.addEventListener(
                   )
 
                 );
+
+              // reload prediction
+              loadFutureMood();
 
               // popup
               popupMood

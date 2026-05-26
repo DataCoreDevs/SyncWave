@@ -10,7 +10,8 @@ from services import (
     load_songs,
     load_moods,
     analyze_user_mood,
-    get_mood_recommendations
+    get_mood_recommendations,
+    predict_next_mood
 )
 
 app = Flask(__name__)
@@ -114,6 +115,31 @@ def recommendations(
         songs
     )
 
+@app.route(
+    "/predict-mood",
+    methods=["POST"]
+)
+def predict_mood():
+
+    data = request.get_json()
+
+    history = data.get(
+        "history",
+        []
+    )
+
+    prediction = (
+        predict_next_mood(
+            history
+        )
+    )
+
+    return jsonify({
+
+        "prediction":
+            prediction
+
+    })
 
 @app.route("/check")
 def check():
