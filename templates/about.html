@@ -1,28 +1,187 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="home">
-  <h1>About SyncWave</h1>
 
-  <p>
-    SyncWave is a mood-driven music discovery web app that adapts recommendations
-    based on how you feel over time.
-  </p>
+<section class="about-page">
 
-  <p>
-    Instead of static playlists, SyncWave tracks listening behavior,
-    analyzes recent activity, and gently shifts recommendations to match
-    your emotional patterns.
-  </p>
+  <div class="about-hero">
 
-  <p>
-    All data is stored locally in your browser.
-    No accounts, no tracking, no data collection.
-  </p>
+    <h1>
+       ABOUT US
+    </h1>
 
-  <p>
-    Built by Aryaman & Arshiya as a full-stack project using Flask,
-    vanilla JavaScript, and modern UI principles.
-  </p>
+    <p class="tagline">
+      Your emotions, your music.
+    </p>
+
+    <p class="about-description">
+
+      SyncWave is an AI-powered
+      mood-based music recommendation
+      platform that understands how
+      you feel and adapts song
+      suggestions accordingly.
+
+      Instead of generic playlists,
+      SyncWave analyzes listening
+      behavior, tracks emotional
+      patterns, and creates a more
+      personal music experience.
+
+    </p>
+
+  </div>
+
+  <section class="about-section">
+
+    <h2 class="section-title">
+      FEATURES
+    </h2>
+
+    <div class="glass-grid">
+
+      <div class="glass-card">
+        <h3>
+          MOOD ANALYSIS
+        </h3>
+
+        <p>
+          Detects your current
+          mood using listening
+          behavior and smart
+          recommendation logic.
+        </p>
+      </div>
+
+      <div class="glass-card">
+        <h3>
+          TOMORROW PREDICTION
+        </h3>
+
+        <p>
+          Predicts tomorrow's
+          likely mood based on
+          recent emotional trends.
+        </p>
+      </div>
+
+      <div class="glass-card">
+        <h3>
+          MOOD HISTORY
+        </h3>
+
+        <p>
+          Track how emotions
+          change over time using
+          intelligent mood history.
+        </p>
+      </div>
+
+      <div class="glass-card">
+        <h3>
+          SMART RECOMMENDATIONS
+        </h3>
+
+        <p>
+          Dynamic music suggestions
+          based on detected moods.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="about-section">
+
+    <h2 class="section-title">
+      TECH STACK USED
+    </h2>
+
+    <div class="glass-grid stack-grid">
+
+      <div class="glass-card">
+        Python
+      </div>
+
+      <div class="glass-card">
+        Flask
+      </div>
+
+      <div class="glass-card">
+        HTML
+      </div>
+
+      <div class="glass-card">
+        CSS
+      </div>
+
+      <div class="glass-card">
+        JavaScript
+      </div>
+
+      <div class="glass-card">
+        Spotify Embed API
+      </div>
+
+      <div class="glass-card">
+        K-Means Clustering
+      </div>
+
+      <div class="glass-card">
+        LSTM Prediction
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="about-section">
+
+    <h2 class="section-title">
+      BUILT BY
+    </h2>
+
+    <div class="normal-text-section">
+
+      <h3>
+        Aryaman Verma & Arshiya
+      </h3>
+
+      <p>
+        Built as a full-stack
+        AI-powered project focused
+        on creating a smarter,
+        emotion-aware music
+        experience.
+      </p>
+
+    </div>
+
+  </section>
+
+  <section class="about-section">
+
+    <h2 class="section-title">
+      VISION
+    </h2>
+
+    <div class="normal-text-section">
+
+      <p>
+        SyncWave aims to make
+        music feel more personal,
+        adaptive, and emotionally
+        aware — transforming how
+        users discover songs based
+        on mood rather than static
+        playlists.
+      </p>
+
+    </div>
+
+  </section>
+
 </section>
+
 {% endblock %}
