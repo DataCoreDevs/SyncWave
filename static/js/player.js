@@ -64,6 +64,7 @@ document.addEventListener(
     }
 
     let currentIndex = 0;
+
     const SONGS_PER_LOAD = 5;
 
     function renderSongs() {
@@ -105,6 +106,7 @@ document.addEventListener(
               class="btn-primary mark-played-btn">
 
               MARK AS PLAYED
+
             </button>
 
           `;
@@ -178,12 +180,26 @@ document.addEventListener(
       ) {
 
         loadMoreBtn
-          .style.display =
-          "none";
+          .textContent =
+          "ALL SONGS LOADED";
+
+        loadMoreBtn.disabled =
+          true;
 
       }
 
     }
+
+    const buttonWrapper =
+      document.createElement(
+        "div"
+      );
+
+    buttonWrapper.style.textAlign =
+      "center";
+
+    buttonWrapper.style.marginTop =
+      "20px";
 
     const loadMoreBtn =
       document.createElement(
@@ -201,12 +217,15 @@ document.addEventListener(
       renderSongs
     );
 
+    buttonWrapper.appendChild(
+      loadMoreBtn
+    );
+
     renderSongs();
 
-    playerContainer
-      .appendChild(
-        loadMoreBtn
-      );
+    playerContainer.after(
+      buttonWrapper
+    );
 
   }
 );
