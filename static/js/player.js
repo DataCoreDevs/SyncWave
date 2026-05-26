@@ -7,16 +7,12 @@ document.addEventListener(
         "player-container"
       );
 
-    if (!playerContainer) return;
+    if (!playerContainer)
+      return;
 
-    playerContainer.innerHTML = "";
+    playerContainer.innerHTML =
+      "";
 
-    // CLEAR OLD LOCAL STORAGE ONCE
-    localStorage.removeItem(
-      "recentSongs"
-    );
-
-    // ALL 21 SONGS
     const songs = [
 
       { id: "5XeFesFbtLpXzIVDNQP22n", name: "I Wanna Be Yours" },
@@ -43,7 +39,6 @@ document.addEventListener(
 
     ];
 
-    // SHUFFLE ONLY ONCE PER SESSION
     let shuffledSongs =
       JSON.parse(
         sessionStorage.getItem(
@@ -55,7 +50,8 @@ document.addEventListener(
 
       shuffledSongs =
         [...songs].sort(
-          () => Math.random() - 0.5
+          () =>
+            Math.random() - 0.5
         );
 
       sessionStorage.setItem(
@@ -64,88 +60,153 @@ document.addEventListener(
           shuffledSongs
         )
       );
+
     }
 
-    shuffledSongs.forEach(
-      (song) => {
+    let currentIndex = 0;
+    const SONGS_PER_LOAD = 5;
 
-        const wrapper =
-          document.createElement(
-            "div"
-          );
+    function renderSongs() {
 
-        wrapper.className =
-          "song-wrapper";
+      const nextSongs =
+        shuffledSongs.slice(
 
-        wrapper.innerHTML = `
+          currentIndex,
 
-          <iframe
-            style="border-radius:16px"
-            src="https://open.spotify.com/embed/track/${song.id}?theme=0"
-            width="100%"
-            height="256"
-            frameborder="0"
-            allow="autoplay; encrypted-media"
-            loading="lazy">
-          </iframe>
+          currentIndex +
+          SONGS_PER_LOAD
 
-          <button
-            class="btn-primary mark-played-btn">
+        );
 
-            MARK AS PLAYED
-          </button>
+      nextSongs.forEach(
+        song => {
 
-        `;
-
-        const button =
-          wrapper.querySelector(
-            ".mark-played-btn"
-          );
-
-        button.addEventListener(
-          "click",
-          () => {
-
-            let recent =
-              JSON.parse(
-                sessionStorage.getItem(
-                  "recentSongs"
-                )
-              ) || [];
-
-            // remove duplicate
-            recent =
-              recent.filter(
-                s => s.id !== song.id
-              );
-
-            // newest first
-            recent.unshift(song);
-
-            recent =
-              recent.slice(0, 25);
-
-            sessionStorage.setItem(
-              "recentSongs",
-              JSON.stringify(
-                recent
-              )
+          const wrapper =
+            document.createElement(
+              "div"
             );
 
-            button.textContent =
-              "PLAYED ✓";
+          wrapper.className =
+            "song-wrapper";
 
-            button.disabled =
-              true;
-          }
-        );
+          wrapper.innerHTML = `
 
-        playerContainer.appendChild(
-          wrapper
-        );
+            <iframe
+              style="border-radius:16px"
+              src="https://open.spotify.com/embed/track/${song.id}?theme=0"
+              width="100%"
+              height="152"
+              frameborder="0"
+              allow="autoplay; encrypted-media"
+              loading="lazy">
+            </iframe>
+
+            <button
+              class="btn-primary mark-played-btn">
+
+              MARK AS PLAYED
+            </button>
+
+          `;
+
+          const button =
+            wrapper.querySelector(
+              ".mark-played-btn"
+            );
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              let recent =
+                JSON.parse(
+                  sessionStorage.getItem(
+                    "recentSongs"
+                  )
+                ) || [];
+
+              recent =
+                recent.filter(
+                  s =>
+                    s.id !==
+                    song.id
+                );
+
+              recent.unshift(
+                song
+              );
+
+              recent =
+                recent.slice(
+                  0,
+                  25
+                );
+
+              sessionStorage.setItem(
+
+                "recentSongs",
+
+                JSON.stringify(
+                  recent
+                )
+
+              );
+
+              button.textContent =
+                "PLAYED ✓";
+
+              button.disabled =
+                true;
+
+            }
+          );
+
+          playerContainer
+            .appendChild(
+              wrapper
+            );
+
+        }
+      );
+
+      currentIndex +=
+        SONGS_PER_LOAD;
+
+      if (
+        currentIndex >=
+        shuffledSongs.length
+      ) {
+
+        loadMoreBtn
+          .style.display =
+          "none";
 
       }
+
+    }
+
+    const loadMoreBtn =
+      document.createElement(
+        "button"
+      );
+
+    loadMoreBtn.className =
+      "btn-primary";
+
+    loadMoreBtn.textContent =
+      "LOAD MORE SONGS";
+
+    loadMoreBtn.addEventListener(
+      "click",
+      renderSongs
     );
+
+    renderSongs();
+
+    playerContainer
+      .appendChild(
+        loadMoreBtn
+      );
 
   }
 );
